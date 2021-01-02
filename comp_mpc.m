@@ -94,8 +94,8 @@ Aeq = [Aeq;aeq3];
 Beq = [Beq;beq3];
 %linear approx
 %}
-
-%{
+%Linear constraints
+%
 if length(agent.obs) ~= 0
     
 for i = 1:length(agent.obs)
@@ -126,12 +126,12 @@ end
 end
 %}
 
-%
+%non-linear constraints
 if length(agent.obs) ~= 0
 
 %constraints = @(u) getorca_nonlin(agent,N,u,dt);
 %constraints = @(u) euclidean(agent,u,dt);
-constraints =  @(u) rvo_hol(agent,u,dt); 
+%constraints =  @(u) rvo_hol(agent,u,dt); 
 end
 %}
 
