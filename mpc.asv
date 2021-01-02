@@ -1,0 +1,16 @@
+function vels = mpc(agent,dt)
+[Xn, Yn , Thetan] = Calc_Npos(agent,u,dt);
+Xg = agent.goal(1);
+Yg = agent.goal(2);
+Thetag = agent.goal(3);
+cost = @(u) 
+
+init = agent.velocities' * 0.5;
+    lb = [-agent.vmax,-agent.vmax];
+    ub = [agent.vmax, agent.vmax];
+
+    options = optimoptions('fmincon','Display','final-detailed','Algorithm','sqp');
+   % controls = fmincon(cost,init,A,B,[],[],lb,ub,[],options);
+ 
+    vels = fmincon(cost, init, [], [], [], [], lb, ub, [], options)';
+end
